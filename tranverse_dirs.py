@@ -14,10 +14,10 @@ def tranverse(directory, test):
 	    if (os.path.exists(test_subs) == False):
             	os.mkdir(test_subs)
             tranverse(source_subs, test_subs)
-        elif os.path.isfile(li):
+        elif os.path.isfile(li_t):
             if li.split('.')[-1] == 'h':
                 temp_file = test+'/'+li
-                open(temp_file, "wb").write(open(li, "rb").read())
+                open(temp_file, "wb").write(open(li_t, "rb").read())
 
 
 if __name__ == '__main__':
