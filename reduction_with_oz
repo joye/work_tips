@@ -1,0 +1,24 @@
+declare
+proc {Split L L1 L2}
+    case L of
+    nil then L1 = nil L2 = nil
+    []X|nil then L1 = X|nil L2 = nil
+    []X|Y|Lr then Yr Zr in 
+        L1 = X|Yr
+        L2 = Y|Zr
+        {Split Lr Yr Zr}
+    end
+end
+
+declare
+fun {Reduction L A B C D}
+    case L of 
+        nil then 0
+    []X|nil then X*A
+    []X|Y|nil then X*A+Y*B
+    []X|Y|Z|nil then X*A+Y*B+Z*C
+    else Ys Zs in 
+        {Split L Ys Zs}
+        {Reduction Ys A C A C}+{Reduction Zs B D B D}
+    end
+end
